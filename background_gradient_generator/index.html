@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction:column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+       .btns{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       }
+    </style>
+</head>
+<body>
+    <div class="btns">
+         <button id="mybutton">#051937</button>
+        <button id="mybutton2">#008793</button>
+    </div><br>
+   <h2>Copy your code here</h2><br>
+   <div class="copyCode"></div>
+   <button  onclick="cpyclip()">copy here</button>
+   <script>
+    let  btn1 = document.querySelector('#mybutton');
+    let btn2 = document.querySelector('#mybutton2');
+    let bgcode = document.querySelector('.copyCode')
+    let rg1 = '#000';
+    let rg2 = '#fff';
+    let gethex= ()=> {
+        let hexcode = '0123456789ABCDEF';
+        let color= '#';
+        for(let i =0;i<6;i++){
+        color= color+ hexcode[Math.floor(Math.random()*16)]
+        }
+    return color
+    }
+    function handlebtn1(){
+    rg1 = gethex()
+    btn1.innerHTML = `${rg1}`;
+    document.body.style.backgroundImage=` linear-gradient(to left ,${rg1},${rg2})`
+    bgcode.innerHTML = `backgroundImage: linear-gradient(to left ,${rg1},${rg2})`
+    console.log(rg1);
+    }
+     function handlebtn2(){
+     rg2 = gethex()
+     btn2.innerHTML = `${rg2}`;
+        document.body.style.backgroundImage=` linear-gradient(to left ,${rg1},${rg2})`
+        bgcode.innerHTML = `backgroundImage: linear-gradient(to left ,${rg1},${rg2})`
+        console.log(rg2);
+    }
+    btn1.addEventListener("click",handlebtn1);
+    btn2.addEventListener("click",handlebtn2);
+    function cpyclip(){
+    navigator.clipboard.writeText(bgcode.value);
+    alert("Copied the text: " + bgcode.value);
+    console.log(bgcode.value);
+    
+    }
+   </script>
+</body>
+</html>
